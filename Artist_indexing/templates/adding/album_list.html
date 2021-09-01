@@ -1,0 +1,30 @@
+{% extends 'adding/base.html' %}
+{% block body_block %}
+
+<h3>Artist Name: {{ artist_info.first_name }} {{ artist_info.last_name }}</h3>
+<h3>Instrument: {{ artist_info.instrument }}</h3>
+<br>
+<a href="{% url 'adding:edit_artist' artist_id=artist_info.id %}" class="btn btn-primary btn-sm">Edit</a>
+<br>
+<h1>List of Album:</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Artist</th>
+    <th>Release Date</th>
+    <th>Rating</th>
+  </tr>
+  {% for album_list in album_list %}
+  <tr>
+    <td><a href="{% url 'adding:edit_album' album_id=album_list.id %}">{{ album_list.name }}</a></td>
+    <td>{{ album_list.artist }}</td>
+    <td>{{ album_list.release_date }}</td>
+    <td>{{ album_list.num_stars }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+
+<a href="{% url 'adding:delete_artist' artist_id=artist_info.id %}" class="btn btn-danger btn-sm">Delete</a>
+
+{% endblock %}

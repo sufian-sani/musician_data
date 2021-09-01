@@ -1,0 +1,38 @@
+{% extends 'adding/base.html' %}
+{% block body_block %}
+{% if not user.is_authenticated %}
+<h4 class="alert alert-warning">Please Register or Login of add Musician or Album</h4>
+{% else %}
+{% endif %}
+<h1>Musician Lists</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Instrument</th>
+  </tr>
+  {% for musician_list in musician_list %}
+  <tr>
+    <td><a href="{% url 'adding:album_list' artist_id=musician_list.id %}">{{ musician_list.first_name }}</a></td>
+    <td>{{ musician_list.last_name }}</td>
+    <td>{{ musician_list.instrument }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+<h1>All Album List</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Artist</th>
+    <th>Release Date</th>
+  </tr>
+  {% for album_list in album_list %}
+  <tr>
+    <td>{{ album_list.name }}</td>
+    <td>{{ album_list.articles }}</td>
+    <td>{{ album_list.release_date }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
